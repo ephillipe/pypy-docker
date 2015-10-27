@@ -10,4 +10,8 @@ ONBUILD RUN pip install -r /usr/src/requirements.txt
 ENV APP_SCRIPT "application.py"
 ENV APP_PORT "application.py"
 
-CMD ["pypy", "${APP_SCRIPT}", "--port=${APP_PORT}"]
+ADD entrypoint.sh /var/tmp/entrypoint.sh
+
+RUN ls -lh /var/tmp/; pwd; id
+
+CMD ["/var/tmp/entrypoint.sh"]
