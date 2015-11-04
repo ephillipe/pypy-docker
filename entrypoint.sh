@@ -5,6 +5,7 @@ APP_SCRIPT=${APP_SCRIPT:-application.py}
 APP_REQUIREMENTS=${APP_REQUIREMENTS:-requirements.txt}
 APP_PORT=${APP_PORT:-8080}
 
+echo "Current directory: " $(pwd)
 echo "Application script: " $APP_SCRIPT
 echo "Application requirements: " $APP_REQUIREMENTS
 echo "Application port: " $APP_PORT
