@@ -2,7 +2,7 @@ FROM pypy:2-5.1.1
 
 RUN apt-get update \
     && apt-get install -y \
-       enchant libffi-dev libc-ares-dev nscd \
+       cron enchant libffi-dev libc-ares-dev nscd \
     && apt-get clean -y \
 	&& apt-get autoclean -y \
 	&& apt-get autoremove -y \
