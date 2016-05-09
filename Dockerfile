@@ -13,7 +13,6 @@ RUN apt-get update \
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
-
 VOLUME /usr/src/app
 
 ADD assets/myspell.tar.gz /usr/share/enchant/myspell
