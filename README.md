@@ -1,4 +1,4 @@
-# pypy-docker
+# PyPy 5.1.1 (2.7) Docker Container
 
 * tornado==3.2.2
 * pycrypto==2.6.1
