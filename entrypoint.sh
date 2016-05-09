@@ -1,6 +1,9 @@
 #!/bin/bash
 set -e
 
+echo "Starting cron service"
+service cron start
+
 APP_SCRIPT=${APP_SCRIPT:-application.py}
 APP_REQUIREMENTS=${APP_REQUIREMENTS:-requirements.txt}
 APP_PORT=${APP_PORT:-8080}
