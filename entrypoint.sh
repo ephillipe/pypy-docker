@@ -5,9 +5,10 @@ echo "Starting cron service"
 service cron start
 
 APP_SCRIPT=${APP_SCRIPT:-application.py}
-APP_REQUIREMENTS=${APP_REQUIREMENTS:-requirements.txt}
+APP_REQUIREMENTS=${APP_REQUIREMENTS:-/usr/src/app/requirements.txt}
 APP_PORT=${APP_PORT:-8080}
 CURRENT_DIR=$(pwd)
+SOMAXCONN=${SOMAXCONN}
 
 echo "Current directory: " $CURRENT_DIR
 echo "Application script: " $APP_SCRIPT
@@ -19,7 +20,12 @@ echo "Current PYTHONPATH:" $PYTHONPATH
 echo "Preparing environment..."
 pip install --upgrade -r $APP_REQUIREMENTS
 
-echo "Starting application..."
-pypy $APP_SCRIPT --port=$APP_PORT
+# Throws error if $SOMAXCONN is set and container not in --privileged mode
+if ! [ -z "$SOMAXCONN" ]; then
+    echo "Increasing somaxconn..."
+    sysctl -w net.core.somaxconn=$SOMAXCONN
+fi
 
-exit 0
+echo "Starting application..."
+echo "$@"
+exec "$@"
