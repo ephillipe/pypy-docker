@@ -11,19 +11,19 @@ RUN apt-get update \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& rm -rf /usr/share/doc/*
 
+RUN curl -q -L https://raw.github.com/kvz/cronlock/master/cronlock -o /usr/bin/cronlock \
+	&& chmod +x /usr/bin/cronlock
+
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 VOLUME /usr/src/app
 
 ADD assets/myspell.tar.gz /usr/share/enchant/myspell
-ADD entrypoint.sh /var/tmp/entrypoint.sh
 ADD requirements.txt /usr/src/app/requirements.txt
-
-RUN curl -q -L https://raw.github.com/kvz/cronlock/master/cronlock -o /usr/bin/cronlock \
-	&& chmod +x /usr/bin/cronlock
-
 RUN pip install --upgrade pip \
 	&& pip install -r /usr/src/app/requirements.txt
 
+ADD entrypoint.sh /var/tmp/entrypoint.sh
 ENTRYPOINT ["/var/tmp/entrypoint.sh"]
-CMD ["pypy", "${APP_SCRIPT}", "--port", "${APP_PORT}"]
+
+CMD ["pypy"]

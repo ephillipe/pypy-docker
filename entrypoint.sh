@@ -27,5 +27,4 @@ if ! [ -z "$SOMAXCONN" ]; then
 fi
 
 echo "Starting application..."
-echo "$@"
-exec "$@"
+exec "$@" $APP_SCRIPT --port $APP_PORT
