@@ -5,7 +5,7 @@ echo "Starting cron service"
 service cron start
 
 APP_SCRIPT=${APP_SCRIPT:-application.py}
-APP_REQUIREMENTS=${APP_REQUIREMENTS:-requirements.txt}
+APP_REQUIREMENTS=${APP_REQUIREMENTS:-/usr/src/app/requirements.txt}
 APP_PORT=${APP_PORT:-8080}
 CURRENT_DIR=$(pwd)
 
@@ -20,6 +20,4 @@ echo "Preparing environment..."
 pip install --upgrade -r $APP_REQUIREMENTS
 
 echo "Starting application..."
-pypy $APP_SCRIPT --port=$APP_PORT
-
-exit 0
+exec "$@"
