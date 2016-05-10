@@ -19,7 +19,10 @@ ADD assets/myspell.tar.gz /usr/share/enchant/myspell
 ADD entrypoint.sh /var/tmp/entrypoint.sh
 ADD requirements.txt /usr/src/requirements.txt
 
-RUN pip install --upgrade -r /usr/src/requirements.txt
-RUN pwd; id
+RUN curl -q -L https://raw.github.com/kvz/cronlock/master/cronlock -o /usr/bin/cronlock \
+	&& chmod +x /usr/bin/cronlock
+
+RUN pip install --upgrade pip \
+	&& pip install -r /usr/src/requirements.txt
 
 CMD ["/var/tmp/entrypoint.sh"]
