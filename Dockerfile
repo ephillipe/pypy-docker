@@ -16,7 +16,7 @@ RUN apt-get update \
 # > At the moment, setting "LANG=C" on a Linux system *fundamentally breaks Python 3*, and that's not OK.
 ENV LANG C.UTF-8
 
-ENV PYPY_VERSION 5.1.1
+ENV PYPY_VERSION 5.0.1
 
 RUN set -x \
 	&& curl -SL "https://bitbucket.org/pypy/pypy/downloads/pypy-${PYPY_VERSION}-linux64.tar.bz2" \
