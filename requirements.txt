@@ -38,7 +38,7 @@ hiredis==0.2.0
 redis-cirrus==2.10.3
 wheezy.web==0.1.485
 gevent-websocket==0.3.6
-Jinja2==2.7.3
+Jinja2==2.11.3
 PyPubSub==3.3.0
 pymongo==3.0.3
 python-crontab==1.9.3
